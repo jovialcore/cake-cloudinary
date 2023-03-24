@@ -8,5 +8,6 @@ class CloudinariesController extends AppController
 {
     public function index()
     {
+        $cloudinaries = $this->fetchTable('CloudinaryDemo.Cloudinary');
     }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "jovialcore/cloudinary-demo",
+    "name": "jovialcore/cake-cloudinary",
     "description": "CloudinaryDemo plugin for CakePHP",
     "type": "cakephp-plugin",
     "license": "MIT",

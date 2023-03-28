@@ -13,7 +13,6 @@ use CloudinaryDemo\Model\Entity\Cloudinary;
  * GeneralFunctions component
  */
 
-
 class CloudinaryComponent extends Component
 {
     private $cloudinaryConfig;

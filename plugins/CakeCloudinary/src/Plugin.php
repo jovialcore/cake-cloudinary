@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace CloudinaryDemo;
+namespace CakeCloudinary;
 
 use Cake\Core\BasePlugin;
 use Cake\Core\ContainerInterface;
@@ -11,7 +11,7 @@ use Cake\Routing\RouteBuilder;
 use Cake\Console\CommandCollection;
 
 /**
- * Plugin for CloudinaryDemo
+ * Plugin for CakeCloudinary
  */
 class Plugin extends BasePlugin
 {
@@ -40,8 +40,8 @@ class Plugin extends BasePlugin
     public function routes(RouteBuilder $routes): void
     {
         $routes->plugin(
-            'CloudinaryDemo',
-            ['path' => '/cloudinary-demo'],
+            'CakeCloudinary',
+            ['path' => '/cake-cloudinary'],
             function (RouteBuilder $builder) {
                 // Add custom routes here
 

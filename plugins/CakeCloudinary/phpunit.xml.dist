@@ -12,7 +12,7 @@
 
     <!-- Add any additional test suites you want to run here -->
     <testsuites>
-        <testsuite name="CloudinaryDemo">
+        <testsuite name="CakeCloudinary">
             <directory>tests/TestCase/</directory>
         </testsuite>
     </testsuites>

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace CloudinaryDemo\Controller;
+namespace CakeCloudinary\Controller;
 
 use App\Controller\AppController as BaseController;
 

@@ -45,6 +45,7 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('CakeCloudinary.Cloudinary');
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.

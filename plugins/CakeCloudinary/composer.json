@@ -1,24 +1,23 @@
 {
-    "name": "jovialcore/cake-cloudinary",
-    "description": "CloudinaryDemo plugin for CakePHP",
+    "name": "your-name-here/cake-cloudinary",
+    "description": "CakeCloudinary plugin for CakePHP",
     "type": "cakephp-plugin",
     "license": "MIT",
     "require": {
         "php": ">=7.2",
-        "cakephp/cakephp": "^4.3",
-        "cloudinary/cloudinary_php" : "^2"
+        "cakephp/cakephp": "^4.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5 || ^9.3"
     },
     "autoload": {
         "psr-4": {
-            "CloudinaryDemo\\": "src/"
+            "CakeCloudinary\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CloudinaryDemo\\Test\\": "tests/",
+            "CakeCloudinary\\Test\\": "tests/",
             "Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
         }
     }

@@ -103,8 +103,27 @@ class CloudinaryComponent extends Component
         return $this->response = $this->uploadApi()->destroy($video, $options);
     }
 
+
+    // get url
+    public function getUrl()
+    {
+        return $this->response['url'];
+    }
+
+    //get public id
+
+    public function getPublicId()
+    {
+        return $this->response['public_id'];
+    }
+
+
+
+
     /**
      * TO dos:
+     * uploadApis (individual assets) : rename
+     * Admin Apis
      * Create collages
      * tags
      * context,

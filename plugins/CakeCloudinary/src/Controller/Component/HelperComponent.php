@@ -20,6 +20,8 @@ class HelperComponent extends Component
     protected $_defaultConfig = [];
 
 
+    // credits : https://gist.github.com/liunian/9338301?permalink_comment_id=3581430#gistcomment-3581430
+
 
     public function human_readable_file_size($bytes)
     {

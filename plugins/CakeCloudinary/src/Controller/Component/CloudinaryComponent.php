@@ -153,12 +153,35 @@ class CloudinaryComponent extends Component
         return $this->response['original_filename'];
     }
 
+
+    // get resource type. e.g image , video
+    public function getResourceType()
+    {
+        return $this->response['resource_type'];
+    }
+
+
+    // get time/date of upload
+    public function getUploadedAt()
+    {
+        return $this->response['created_at'];
+    }
+
+
+    // get time/date of upload
+    public function getVersionId()
+    {
+        return $this->response['version_id'];
+    }
+
     //get file size in human readable format as default
     // cconfirm if dev wants bytes size in normal format
 
     public function getFileSize(bool $human_readable = true)
     {
         $bytes =  $this->response['bytes'];
+
+        // cconfirm if dev wants bytes size in normal formatI
         if ($human_readable === false) {
             return $bytes;
         }

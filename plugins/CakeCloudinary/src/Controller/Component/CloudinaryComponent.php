@@ -92,6 +92,16 @@ class CloudinaryComponent extends Component
     }
 
 
+    public function unsignedUploadFile($file, array $options = [])
+    {
+        $anyFileParams  = ['resource_type' =>  'auto'];
+
+        $options = array_merge($options, $anyFileParams);
+
+        return $this->response = $this->uploadApi()->unsignedUpload($file, $options);
+    }
+
+
     // delete an image  from cloudinray account
 
     public function deleteImage($image, array $options = [])
@@ -110,6 +120,15 @@ class CloudinaryComponent extends Component
         return $this->response = $this->uploadApi()->destroy($video, $options);
     }
 
+
+    // upload explicit ref : https://cloudinary.com/documentation/image_upload_api_reference#explicit
+
+    public function explicit($publicId, $options = [])
+    {
+        return $this->uploadApi()->explicit($publicId, $options);
+    }
+
+
     // rename file from cloudinary
     public function rename(string $oldname, string $newname, array $options = [])
     {
@@ -117,7 +136,12 @@ class CloudinaryComponent extends Component
     }
 
 
-    /// other response apis
+    // rename async file from cloudinary
+    public function renameAsync(string $oldname, string $newname, array $options = [])
+    {
+        return $this->uploadApi()->renameAsync($oldname, $newname, $options);
+    }
+
 
     // get url
     public function getUrl()
@@ -174,7 +198,7 @@ class CloudinaryComponent extends Component
     }
 
 
-    // get time/date of upload
+    // get version id
     public function getVersionId()
     {
         return $this->response['version_id'];
@@ -194,10 +218,6 @@ class CloudinaryComponent extends Component
 
         return $bytes;
     }
-
-
-
-
 
 
     /**
@@ -230,11 +250,26 @@ class CloudinaryComponent extends Component
     }
 
 
+    public function fetchResource($data)
+    {
+        try {
+            return $this->adminApi()->asset($data);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 
+
+    public function fetchUrl($publicId)
+    {
+        $resource = $this->fetchResource($publicId);
+        return $resource['securl_url'] ?? '';
+    }
 
 
     /**
      * TO dos:
+     * api method to attach a folder when uploading
      * uploadApis (individual assets) : rename
      * unsigned upload
      * Admin Apis

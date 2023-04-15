@@ -110,6 +110,12 @@ class CloudinaryComponent extends Component
         return $this->response = $this->uploadApi()->destroy($video, $options);
     }
 
+    // rename file from cloudinary
+    public function rename(string $oldname, string $newname, array $options = [])
+    {
+        return $this->uploadApi()->rename($oldname, $newname, $options);
+    }
+
 
     /// other response apis
 
@@ -119,7 +125,7 @@ class CloudinaryComponent extends Component
         return $this->response['url'];
     }
 
-    //get secure url
+    //get secure url (https)
 
     public function getSecureUrl()
     {
@@ -177,16 +183,52 @@ class CloudinaryComponent extends Component
     //get file size in human readable format as default
     // cconfirm if dev wants bytes size in normal format
 
-    public function getFileSize(bool $human_readable = true)
+    public function getFileSize(bool $human_readable = false)
     {
         $bytes =  $this->response['bytes'];
 
-        // cconfirm if dev wants bytes size in normal formatI
+        // confirm if dev wants bytes size in human readable format
         if ($human_readable === false) {
-            return $bytes;
+            return $this->Helper->human_readable_file_size($bytes);
         }
-        return $this->Helper->human_readable_file_size($bytes);
+
+        return $bytes;
     }
+
+
+
+
+
+
+    /**
+     *
+     * ||||| fetching instance of resource with from remote with current configuration
+     */
+
+    // get new image with exisiting instance configuration
+
+
+    public function fetchImage($publicId)
+    {
+        return $this->cloudinary->image($publicId);
+    }
+
+    // get new video with exisiting instance configuration
+
+
+    public function fetchVideo($publicId)
+    {
+        return $this->cloudinary->video($publicId);
+    }
+
+
+    // get new video with exisiting instance configuration
+
+    public function fetchFile($publicId)
+    {
+        return $this->cloudinary->image($publicId);
+    }
+
 
 
 
@@ -194,6 +236,7 @@ class CloudinaryComponent extends Component
     /**
      * TO dos:
      * uploadApis (individual assets) : rename
+     * unsigned upload
      * Admin Apis
      * Create collages
      * tags

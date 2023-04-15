@@ -153,7 +153,7 @@ class CloudinaryComponent extends Component
         return $this->response['original_filename'];
     }
 
-    //get file size
+    //get file size in human readable format as default
     // cconfirm if dev wants bytes size in normal format
 
     public function getFileSize(bool $human_readable = true)

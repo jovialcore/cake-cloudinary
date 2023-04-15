@@ -269,15 +269,9 @@ class CloudinaryComponent extends Component
     /**
      * TO dos:
      * api method to attach a folder when uploading
-     * uploadApis (individual assets) : rename
-     * unsigned upload
-     * Admin Apis
-     * Create collages
      * tags
-     * context,
-     * text api,
-     *
-     * and some functionalities like image video creation, and creation of collages that doesn't support collages yet
+     * sprite/generative
+     * and some functionalities like image video creation, and creation of collages that doesn't support collages yet ???
      *
      */
 }

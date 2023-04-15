@@ -31,14 +31,21 @@ class CloudinaryComponent extends Component
     protected $response;
 
 
+
+    // loading the helper component
+    protected $components = ['Helper'];
+
+
     public function __construct()
     {
         $this->startUpCloudinary();
     }
 
 
+
     public function initialize(array $config): void
     {
+        parent::initialize();
     }
 
 
@@ -144,6 +151,18 @@ class CloudinaryComponent extends Component
     public function getOriginalFileName()
     {
         return $this->response['original_filename'];
+    }
+
+    //get file size
+    // cconfirm if dev wants bytes size in normal format
+
+    public function getFileSize(bool $human_readable = true)
+    {
+        $bytes =  $this->response['bytes'];
+        if ($human_readable === false) {
+            return $bytes;
+        }
+        return $this->Helper->human_readable_file_size($bytes);
     }
 
 

@@ -259,7 +259,6 @@ class CloudinaryComponent extends Component
         }
     }
 
-
     public function fetchUrl($publicId)
     {
         $resource = $this->fetchResource($publicId);

@@ -104,10 +104,19 @@ class CloudinaryComponent extends Component
     }
 
 
+    /// other response apis
+
     // get url
     public function getUrl()
     {
         return $this->response['url'];
+    }
+
+    //get secure url
+
+    public function getSecureUrl()
+    {
+        return $this->response['secure_url'];
     }
 
     //get public id
@@ -115,6 +124,26 @@ class CloudinaryComponent extends Component
     public function getPublicId()
     {
         return $this->response['public_id'];
+    }
+
+
+    // get asset id
+    public function getAssetId()
+    {
+        return $this->response['asset_id'];
+    }
+
+
+    // get format
+    public function getExtention()
+    {
+        return $this->response['format'];
+    }
+
+    // get original filename
+    public function getOriginalFileName()
+    {
+        return $this->response['original_filename'];
     }
 
 

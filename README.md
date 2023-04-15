@@ -1,6 +1,11 @@
-# A Modern CakePHP  Cloudinary Plugin 
+# CakeCloudinary plugin for CakePHP
 
+## Installation
 
-Use cloudinary functionalities in your cakephp 4x application. A morden, yet simple plugin to use.
+You can install this plugin into your CakePHP application using [composer](https://getcomposer.org).
 
-### still under dev. switch to branch 'plugin' to monitor progress 
+The recommended way to install composer packages is:
+
+```
+composer require jovialcore/cake-cloudinary
+```

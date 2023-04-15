@@ -12,25 +12,19 @@
 
     <!-- Add any additional test suites you want to run here -->
     <testsuites>
-        <testsuite name="app">
+        <testsuite name="CakeCloudinary">
             <directory>tests/TestCase/</directory>
         </testsuite>
-        <!-- Add plugin test suites here. -->
     </testsuites>
 
-    <!-- Load extension for fixtures -->
+    <!-- Setup fixture extension -->
     <extensions>
-        <extension class="Cake\TestSuite\Fixture\PHPUnitExtension"/>
+        <extension class="Cake\TestSuite\Fixtures\PHPUnitExtension" />
     </extensions>
 
-    <!-- Ignore vendor tests in code coverage reports -->
     <filter>
         <whitelist>
             <directory suffix=".php">src/</directory>
-            <directory suffix=".php">plugins/*/src/</directory>
-            <exclude>
-                <file>src/Console/Installer.php</file>
-            </exclude>
         </whitelist>
     </filter>
 </phpunit>

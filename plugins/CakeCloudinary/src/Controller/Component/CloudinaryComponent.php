@@ -42,10 +42,9 @@ class CloudinaryComponent extends Component
     }
 
 
-
     public function initialize(array $config): void
     {
-        parent::initialize();
+        parent::initialize($config);
     }
 
 
@@ -73,12 +72,20 @@ class CloudinaryComponent extends Component
     }
 
 
-    // upload a file to ccloudinary account
+    // upload an asset to your cloudinary account. Asset can be formdata object, file path, DATA URI
 
     public function upload($file, array $options = [])
     {
         return $this->response = $this->uploadApi()->upload($file, $options);
     }
+
+
+    // upload an asset to asychronously to cloduinary
+    public function uploadAsync($file, array $options = [])
+    {
+        return $this->response = $this->uploadApi()->uploadAsync($file, $options);
+    }
+
 
     // upload any typeof file to cloudinary account
 
@@ -91,14 +98,16 @@ class CloudinaryComponent extends Component
         return $this->response = $this->uploadApi()->upload($file, $options);
     }
 
-
-    public function unsignedUploadFile($file, array $options = [])
+    // upload an asset to cloudinary without being authenticated i.e unsigned
+    public function unsignedUpload(string $file, $uploadPreset, array $options = [])
     {
-        $anyFileParams  = ['resource_type' =>  'auto'];
+        return $this->response = $this->uploadApi()->unsignedUpload($file, $uploadPreset, $options);
+    }
 
-        $options = array_merge($options, $anyFileParams);
-
-        return $this->response = $this->uploadApi()->unsignedUpload($file, $options);
+    // upload an asset to cloudinary asynchronously without being authenticated i.e unsigned
+    public function unsignedUploadAsync(string $file, $uploadPreset, array $options = [])
+    {
+        return $this->response = $this->uploadApi()->unsignedUploadAsync($file, $uploadPreset, $options);
     }
 
 
@@ -269,9 +278,15 @@ class CloudinaryComponent extends Component
     /**
      * TO dos:
      * api method to attach a folder when uploading
+     * uploadApis (individual assets) : rename
+     * unsigned upload
+     * Admin Apis
+     * Create collages
      * tags
-     * sprite/generative
-     * and some functionalities like image video creation, and creation of collages that doesn't support collages yet ???
+     * context,
+     * text api,
+     *
+     * and some functionalities like image video creation, and creation of collages that doesn't support collages yet
      *
      */
 }

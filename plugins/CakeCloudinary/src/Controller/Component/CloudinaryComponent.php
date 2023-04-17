@@ -81,13 +81,13 @@ class CloudinaryComponent extends Component
         $this->response = $this->uploadApi()->upload($file, $options);
 
         foreach (func_get_args() as $key => $param) {
-            //confirm that the argument we want is an array
+            //confirm that the argument we want is of an array type
             if (is_array(func_get_args()[$key])) {
-                //check if the array is 'getUrl'
+                //check if the key of the  array is 'getUrl'
                 if (array_keys(func_get_args()[$key])[0]  == 'getUrl') {
-                    //check if the url key is a boolean type
+                    //check if the getUrl key's value is a boolean type
                     if (is_bool(func_get_args()[$key]['getUrl'])) {
-                        //check if the value of getUrl is set to true
+                        //check if the value of getUrl  is set to true
                         if (func_get_args()[$key]['getUrl'] == true) {
                             // return secure url
                             return  $this->response['secure_url'];

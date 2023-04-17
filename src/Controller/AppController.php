@@ -56,7 +56,7 @@ class AppController extends Controller
 
         $var = 'https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg';
 
-        dd($this->Cloudinary->upload($var, ['getUl' => true]));
+        $this->Cloudinary->upload($var, ['getUrl' => true]);
 
 
 

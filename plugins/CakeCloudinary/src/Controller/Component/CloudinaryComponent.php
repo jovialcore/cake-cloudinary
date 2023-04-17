@@ -9,6 +9,7 @@ use Cake\Controller\ComponentRegistry;
 use Cake\Core\Configure;
 use Cloudinary\Api\Upload\UploadApi;
 use Cloudinary\Cloudinary;
+use InvalidArgumentException;
 
 /**
  * Cloudinary component
@@ -51,7 +52,8 @@ class CloudinaryComponent extends Component
     // retrieve cloudinray config  and instantiate the default php sdk cloudinary class
     public function startUpCloudinary()
     {
-        $cloudinaryConfig = Configure::read('cloudinary.default');
+        $cloudinaryConfig = Configure::read('Cloudinary.default');
+
 
         $this->cloudinary = new Cloudinary($cloudinaryConfig);
     }
@@ -74,9 +76,30 @@ class CloudinaryComponent extends Component
 
     // upload an asset to your cloudinary account. Asset can be formdata object, file path, DATA URI
 
-    public function upload($file, array $options = [])
+    public function upload(string|object $file, array $options = [], $url = [])
     {
-        return $this->response = $this->uploadApi()->upload($file, $options);
+        $this->response = $this->uploadApi()->upload($file, $options);
+
+        foreach (func_get_args() as $key => $param) {
+            //confirm that the argument we want is an array
+            if (is_array(func_get_args()[$key])) {
+                //check if the array is 'getUrl'
+                if (array_keys(func_get_args()[$key])[0]  == 'getUrl') {
+                    if (is_bool(func_get_args()[$key]['getUrl'])) {
+                        if (func_get_args()[$key]['getUrl'] == true) {
+                            return  $this->response['secure_url'];
+                        } else {
+                            return  $this->response;
+                        }
+                    } else {
+                        throw new InvalidArgumentException('the getUrl key must be a type of boolean');
+                    }
+                } else {
+                    throw new InvalidArgumentException("the array key must be type of this string 'getUrl' ");
+                }
+            }
+        }
+        return $this->response;
     }
 
 
@@ -216,16 +239,16 @@ class CloudinaryComponent extends Component
     //get file size in human readable format as default
     // cconfirm if dev wants bytes size in normal format
 
-    public function getFileSize(bool $human_readable = false)
+    public function getFileSize(array $option = ['human_readable' => true])
     {
         $bytes =  $this->response['bytes'];
 
         // confirm if dev wants bytes size in human readable format
-        if ($human_readable === false) {
-            return $this->Helper->human_readable_file_size($bytes);
+        if ($option['human_readable'] === false) {
+            return $bytes;
         }
 
-        return $bytes;
+        return $this->Helper->human_readable_file_size($bytes);
     }
 
 
@@ -285,7 +308,7 @@ class CloudinaryComponent extends Component
      * tags
      * context,
      * text api,
-     *
+     *check if file was uploaded successfully
      * and some functionalities like image video creation, and creation of collages that doesn't support collages yet
      *
      */

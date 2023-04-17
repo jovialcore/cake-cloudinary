@@ -21,7 +21,7 @@ declare(strict_types=1);
  */
 require __DIR__ . DIRECTORY_SEPARATOR . 'paths.php';
 
-/*
+/* // $result = $this->Cloudinary->upload()->getSecureUrl();
  * Bootstrap CakePHP.
  *
  * Does the various bits of setup that CakePHP needs to do.

@@ -52,5 +52,15 @@ class AppController extends Controller
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+
+
+        $var = 'https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg';
+
+        dd($this->Cloudinary->upload($var, ['getUl' => true]));
+
+
+
+
+        // dd($instance->getSecureUrl());
     }
 }

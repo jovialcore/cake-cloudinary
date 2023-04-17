@@ -85,10 +85,14 @@ class CloudinaryComponent extends Component
             if (is_array(func_get_args()[$key])) {
                 //check if the array is 'getUrl'
                 if (array_keys(func_get_args()[$key])[0]  == 'getUrl') {
+                    //check if the url key is a boolean type
                     if (is_bool(func_get_args()[$key]['getUrl'])) {
+                        //check if the value of getUrl is set to true
                         if (func_get_args()[$key]['getUrl'] == true) {
+                            // return secure url
                             return  $this->response['secure_url'];
                         } else {
+                            // return default response
                             return  $this->response;
                         }
                     } else {

@@ -76,7 +76,7 @@ class CloudinaryComponent extends Component
 
     // upload an asset to your cloudinary account. Asset can be formdata object, file path, DATA URI
 
-    public function upload(string|object $file, array $options = [], $url = [])
+    public function upload(string|object $file, array $options = [], array $url = [])
     {
         $this->response = $this->uploadApi()->upload($file, $options);
 

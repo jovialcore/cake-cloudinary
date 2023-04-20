@@ -34,18 +34,16 @@ class CloudinaryComponent extends Component
 
 
     // loading the helper component
-    protected $components = ['Helper'];
+    protected $components = ['CakeCloudinary.Helper'];
 
 
-    public function __construct()
-    {
-        $this->startUpCloudinary();
-    }
+
 
 
     public function initialize(array $config): void
     {
         parent::initialize($config);
+        $this->startUpCloudinary();
     }
 
 
@@ -80,29 +78,10 @@ class CloudinaryComponent extends Component
     {
         $this->response = $this->uploadApi()->upload($file, $options);
 
-        foreach (func_get_args() as $key => $param) {
-            //confirm that the argument we want is of an array type
-            if (is_array(func_get_args()[$key])) {
-                //check if the key of the  array is 'getUrl'
-                if (array_keys(func_get_args()[$key])[0]  == 'getUrl') {
-                    //check if the getUrl key's value is a boolean type
-                    if (is_bool(func_get_args()[$key]['getUrl'])) {
-                        //check if the value of getUrl  is set to true
-                        if (func_get_args()[$key]['getUrl'] == true) {
-                            // return secure url
-                            return  $this->response['secure_url'];
-                        } else {
-                            // return default response
-                            return  $this->response;
-                        }
-                    } else {
-                        throw new InvalidArgumentException('the getUrl key must be a type of boolean');
-                    }
-                } else {
-                    throw new InvalidArgumentException("the array key must be type of this string 'getUrl' ");
-                }
-            }
-        }
+
+        $this->Helper->getSecureUrlFromArgsArr(func_get_args(), $this->response);
+
+
         return $this->response;
     }
 

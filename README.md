@@ -53,14 +53,15 @@ class YourController extends Controller
 }
 ```
 
-### Uploading an image
+### Uploading an asset
 
-To upload an image to your Cloudinary account, you can call the `upload` method of the Cloudinary component. The method takes the file to be uploaded as the first argument and an array of options as the second argument:
-// Upload the file to cloudinary and get a secure url in one liner
+The `$file` parameter can be a file path, a `File` object or a `UploadedFile` object.
+
+Quickily upload an asset and return a secure url 
 ```php
 $this->Cloudinary->upload($file, ['getUrl' => 'true']);
 ```
-The `$file` parameter can be a file path, a `File` object or a `UploadedFile` object. The options array can include any of the options supported by the Cloudinary API. See the [Cloudinary PHP Image Upload API documentation](https://cloudinary.com/documentation/php_image_and_video_upload#server_side_upload) for a list of available options.
+The assets method can also take an array of options as second argument. The options array can include any of the options supported by the Cloudinary API. See the [Cloudinary PHP Image Upload API documentation](https://cloudinary.com/documentation/php_image_and_video_upload#server_side_upload) for a list of available options.
 Example: 
 ```php
 $this->Cloudinary->upload($file,[
@@ -68,30 +69,9 @@ $this->Cloudinary->upload($file,[
       'public_id' => 'my_video_name',
 ], ['getUrl' => 'true']);
 ```
-The `upload` method also returns a response object that contains the uploaded image's metadata, including its URL and public ID. You can retrieve the URL of the uploaded image using the `getUrl` or `getSecureUrl` methods of the Cloudinary component:
+The asset method/apis also returns a response object that contains the uploaded image's metadata, including its URL and public ID. You can retrieve the URL of the uploaded image using the `getUrl` or `getSecureUrl` methods of the Cloudinary component:
 
 ```php
 $url = $this->Cloudinary->getUrl();
 $secureUrl = $this->Cloudinary->getSecureUrl();
 ```
-
-### Uploading a video
-
-To upload a video to your Cloudinary account, you can call the `uploadVideo` method of the Cloudinary component. The method takes the video file to be uploaded as the first argument and an array of getUrl as part of the functions argument where you can specify if you want to quickly get secure url once an upload is successful. 
-
-//  Quickly upload a video to Cloudinary and get a secure URL in one line of code
-```php
-$this->Cloudinary->uploadVideo($file, ['getUrl' => true]);
-```
-You can add `options` array as part of the parameter. The options array can include any of the options supported by the Cloudinary API. See the [Cloudinary PHP Image Upload API documentation](https://cloudinary.com/documentation/php_image_and_video_upload#server_side_upload) for a list of available options.
-
-The `uploadVideo` method returns a response object that contains the uploaded video's metadata, including its URL and public ID. You can retrieve the URL of the uploaded video using the `getUrl` or `getSecureUrl` methods of the Cloudinary component:
-
-```php
-$url = $this->Cloudinary->getUrl();
-$secureUrl = $this->Cloudinary->getSecureUrl();
-```
-
-### Uploading any file
-
-To upload any type

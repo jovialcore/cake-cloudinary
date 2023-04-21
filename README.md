@@ -84,4 +84,10 @@ The asset method/apis also returns a response object that contains the uploaded 
 ```php
 $url = $this->Cloudinary->getUrl();
 $secureUrl = $this->Cloudinary->getSecureUrl();
+$publicId = $this->Cloudinary->getPublicId();
+$assetId = $this->Cloudinary->getAssetId();
+$originalFIleName = $this->Cloudinary->getOriginalFileName();
+$resourceType = $this->Cloudinary->getResourceType();
+$extension = $this->Cloudinary->getExtension();
+$fileType = $this->Cloudinary->getFileType();
 ```

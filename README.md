@@ -1,3 +1,10 @@
+# CakePHP Cloudinary Plugin
+
+The CakePHP Cloudinary Plugin provides an easy-to-use wrapper for the Cloudinary PHP SDK to enable easy file uploads to your Cloudinary account in CakePHP projects.
+
+## Installation
+
+Install the plugin using composer
 ## Installation
 
 The recommended way to install the plugin is using Composer:

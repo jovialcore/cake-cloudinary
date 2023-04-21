@@ -7,7 +7,7 @@ Install the plugin using composer
 
 
 ```bash
-composer require cakephp-cloudinary/cloudinary
+composer require jovialcore/cakephp-cloudinary
 ```
 
 You will also need to configure the Cloudinary credentials in the `app.php` file:

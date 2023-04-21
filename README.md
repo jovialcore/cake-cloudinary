@@ -55,7 +55,7 @@ class YourController extends Controller
 
 ### Uploading an asset
 
-The `$file` parameter can be a file path, a `File` object or a `$this->request->getUploadedFiles()` |  `$this->request->getUploadedFile()` object.
+The `$file` parameter can be a file path, a `File` object or a `$this->request->getUploadedFiles()` |  `$this->request->getUploadedFile();` object.
 
 Quickily upload an asset and return a secure url 
 ```php
@@ -126,8 +126,7 @@ $url = $this->Cloudinary->fetchUrl($publicId);
 - [Chidiebere Chukwudi](https://github.com/jovialcore)
 - [All Contributors](../../contributors)
 
-This plugin is greatly inspired by
-the [Laravel Cloudinary Package](https://github.com/cloudinary-devs/cloudinary-laravel)
+This plugin drew inspiration from the [Laravel Cloudinary Package](https://github.com/cloudinary-devs/cloudinary-laravel)
 
 ## License
 

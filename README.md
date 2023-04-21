@@ -83,13 +83,21 @@ The asset method/apis also returns a response object that contains the uploaded 
 
 ```php
 $url = $this->Cloudinary->getUrl(); // get url of uploaded file (http)
+
 $secureUrl = $this->Cloudinary->getSecureUrl(); //  get secureUrl of the uploaded asst
+
 $publicId = $this->Cloudinary->getPublicId(); // get public Id of the uploaded asset
+
 $originalFIleName = $this->Cloudinary->getOriginalFileName(); // get the asset name before it was uploaded to cloudinary
+
 $resourceType = $this->Cloudinary->getUploadedAt(); // get the time the asset as uploaded
+
 $extension = $this->Cloudinary->getExtension(); // get file extension of the uploaded asset e.g jpg, .pdf, .png, etc
+
 $fileType = $this->Cloudinary->getFileType(); // get asset type. E.g, image, video, etc. 
-$fileSize = $this->Cloudinary->getFileSize(); //get uploaded asset file's size by defaults, it returns a human readable file size like 20MB, 20kb, etc.
+
+$fileSize = $this->Cloudinary->getFileSize(); //get uploaded asset file's size by defaults, it returns a human readable file size like 20MB, 20kb, etc
+
 // If you prefer to get just the raw bytes, 
 $fileizeInBytes = this->Cloudinary->getFileSize(['human_readable' => false]);
 ```

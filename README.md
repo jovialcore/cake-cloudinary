@@ -77,7 +77,7 @@ Example:
 $this->Cloudinary->upload($file,[
     'folder' => 'my_cloudinary_folder',
       'public_id' => 'my_video_name',
-], ['getUrl' => 'true']);
+]);
 ```
 The asset method/apis also returns a response object that contains the uploaded image's metadata, including its URL and public ID. You can retrieve the URL of the uploaded image using the `getUrl` or `getSecureUrl` methods of the Cloudinary component:
 

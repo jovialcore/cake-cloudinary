@@ -106,6 +106,24 @@ $height = $this->Cloudinary->getHeight(); // get asset height
 
 $width = $this->Cloudinary->getWidth(); // get asset width
 ```
+#### Delete assets
+
+```php
+$res = $this->Cloudinary->delete();
+```
+
+#### Fetching remote assets
+```php
+// get url from an asset
+
+$url = $this->Cloudinary->fetchUrl($publicId);
+
+  // get new asset  with exisiting instance configuration
+   $image =  $this->Cloudinary->fetchFile($publicId)
+```
+
+
+
 ## Credits
 - [Chidiebere Chukwudi](https://github.com/jovialcore)
 - [All Contributors](../../contributors)

@@ -106,3 +106,13 @@ $height = $this->Cloudinary->getHeight(); // get asset height
 
 $width = $this->Cloudinary->getWidth(); // get asset width
 ```
+
+- [Chidiebere Chukwudi](https://github.com/jovialcore)
+- [All Contributors](../../contributors)
+
+This plugin is greatly inspired by
+the [Laravel Cloudinary Package](https://github.com/cloudinary-devs/cloudinary-laravel)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

@@ -100,4 +100,9 @@ $fileSize = $this->Cloudinary->getFileSize(); //get uploaded asset file's size b
 
 // If you prefer to get just the raw bytes, 
 $fileizeInBytes = this->Cloudinary->getFileSize(['human_readable' => false]);
+
+
+$height = $this->Cloudinary->getHeight(); // get asset height
+
+$width = $this->Cloudinary->getWidth(); // get asset width
 ```

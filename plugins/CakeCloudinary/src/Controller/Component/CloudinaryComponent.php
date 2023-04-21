@@ -86,22 +86,30 @@ class CloudinaryComponent extends Component
     }
 
 
-    // upload an asset to asychronously to cloduinary
-    public function uploadAsync($file, array $options = [])
-    {
-        return $this->response = $this->uploadApi()->uploadAsync($file, $options);
-    }
+    // upload a video asset to your cloudinary account. Video Asset can be formdata object, file path, DATA URI
 
+    public function uploadVideo(string|object $file, array $options = [], array $url = [])
+    {
+        $this->response = $this->uploadApi()->upload($file, $options);
+
+        $this->Helper->getSecureUrlFromArgsArr(func_get_args(), $this->response);
+
+
+        return $this->response;
+    }
 
     // upload any typeof file to cloudinary account
 
-    public function uploadFile($file, array $options = [])
+    public function uploadFile($file, array $options = [], array $url = [])
     {
         $anyFileParams  = ['resource_type' =>  'auto'];
 
         $options = array_merge($options, $anyFileParams);
+        $this->response = $this->uploadApi()->upload($file, $options);
 
-        return $this->response = $this->uploadApi()->upload($file, $options);
+        $this->Helper->getSecureUrlFromArgsArr(func_get_args(), $this->response);
+
+        return $this->response;
     }
 
     // upload an asset to cloudinary without being authenticated i.e unsigned
@@ -115,6 +123,13 @@ class CloudinaryComponent extends Component
     {
         return $this->response = $this->uploadApi()->unsignedUploadAsync($file, $uploadPreset, $options);
     }
+
+    // upload an asset to asychronously to cloduinary
+    public function uploadAsync($file, array $options = [])
+    {
+        return $this->response = $this->uploadApi()->uploadAsync($file, $options);
+    }
+
 
 
     // delete an image  from cloudinray account
@@ -192,7 +207,8 @@ class CloudinaryComponent extends Component
         return $this->response['format'];
     }
 
-    // get original filename
+    // get original filename  before it was uploaded to Cloudinary
+
     public function getOriginalFileName()
     {
         return $this->response['original_filename'];
@@ -219,6 +235,62 @@ class CloudinaryComponent extends Component
         return $this->response['version_id'];
     }
 
+
+    //get version of the uploaded cloudinary asset
+    public function getVersion()
+    {
+        return $this->response['version'];
+    }
+
+
+    //get signature of the uploaded cloudinary asset
+    public function getSignature()
+    {
+        return $this->response['signature'];
+    }
+
+    //get width of the uploaded cloudinary asset
+    public function getWidth()
+    {
+        return $this->response['width'];
+    }
+
+    //get height of the uploaded cloudinary asset
+    public function getHeight()
+    {
+        return $this->response['height'];
+    }
+
+    //get extension of the uploaded cloudinary asset
+    public function getExtension()
+    {
+        return $this->response['format'];
+    }
+
+    //get filetype of the uploaded cloudinary asseti
+    public function getFileType()
+    {
+        return $this->response['resource_type'];
+    }
+
+    //get time uploaded of the uploaded cloudinary asset
+    public function getTimeUploaded()
+    {
+        return $this->response['created_at'];
+    }
+
+    //get tags of the uploaded cloudinary asset
+    public function getTags()
+    {
+        return $this->response['tags'];
+    }
+
+    //get pages
+    public function getPages()
+    {
+        return $this->response['pages'];
+    }
+
     //get file size in human readable format as default
     // cconfirm if dev wants bytes size in normal format
 
@@ -237,11 +309,10 @@ class CloudinaryComponent extends Component
 
     /**
      *
-     * ||||| fetching instance of resource with from remote with current configuration
+     * ||||| fetching instance of resource w from remote with current configuration
      */
 
     // get new image with exisiting instance configuration
-
 
     public function fetchImage($publicId)
     {

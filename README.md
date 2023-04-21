@@ -106,7 +106,7 @@ $height = $this->Cloudinary->getHeight(); // get asset height
 
 $width = $this->Cloudinary->getWidth(); // get asset width
 ```
-
+## Credits
 - [Chidiebere Chukwudi](https://github.com/jovialcore)
 - [All Contributors](../../contributors)
 

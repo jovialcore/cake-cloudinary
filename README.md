@@ -55,7 +55,7 @@ class YourController extends Controller
 
 ### Uploading an asset
 
-The `$file` parameter can be a file path, a `File` object or a `$this->request->getUploadedFile();` | `$this->request->getUploadedFiles()` object
+The `$file` parameter can be a file path, a `File` object or a `UploadedFile` object.
 
 Quickily upload an asset and return a secure url 
 ```php
@@ -109,7 +109,7 @@ $width = $this->Cloudinary->getWidth(); // get asset width
 #### Delete assets
 
 ```php
-$res = $this->Cloudinary->delete();
+$res = $this->Cloudinary->delete($publidId);
 ```
 
 #### Fetching remote assets
@@ -118,8 +118,6 @@ $res = $this->Cloudinary->delete();
 
 $url = $this->Cloudinary->fetchUrl($publicId);
 
-  // get new asset  with exisiting instance configuration
-   $image =  $this->Cloudinary->fetchFile($publicId)
 ```
 
 

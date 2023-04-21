@@ -131,6 +131,12 @@ class CloudinaryComponent extends Component
     }
 
 
+     // delete any asset  from cloudinray account
+    public function delete($publicId, $options = [])
+    {
+        return $this->uploadApi()->destroy($publicId, $options);
+    }
+
 
     // delete an image  from cloudinray account
 
@@ -298,10 +304,12 @@ class CloudinaryComponent extends Component
     {
         $bytes =  $this->response['bytes'];
 
+
         // confirm if dev wants bytes size in human readable format
         if ($option['human_readable'] === false) {
             return $bytes;
         }
+
 
         return $this->Helper->human_readable_file_size($bytes);
     }
@@ -328,11 +336,11 @@ class CloudinaryComponent extends Component
     }
 
 
-    // get new video with exisiting instance configuration
+    // get new file with exisiting instance configuration
 
     public function fetchFile($publicId)
     {
-        return $this->cloudinary->image($publicId);
+        return $this->cloudinary->raw($publicId);
     }
 
 

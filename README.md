@@ -1,109 +1,93 @@
-# CakePHP Cloudinary Plugin
-
-The CakePHP Cloudinary Plugin provides an easy-to-use wrapper for the Cloudinary PHP SDK to enable easy file uploads to your Cloudinary account in CakePHP projects.
-
 ## Installation
 
-Install the plugin using composer:
+The recommended way to install the plugin is using Composer:
 
 ```bash
-composer require cloudinary/cakephp-cloudinary
+composer require cakephp-cloudinary/cloudinary
 ```
 
-Then, load the plugin by adding the following line in your `config/bootstrap.php` file:
+You will also need to configure the Cloudinary credentials in the `app.php` file:
 
 ```php
-Plugin::load('Cloudinary');
-```
+// config/app.php
 
-## Configuration
-
-Add your Cloudinary configuration in `app.php`:
-
-```php
-'Cloudinary' => [
-    'default' => [
-        'cloud_name' => 'YOUR_CLOUD_NAME',
-        'api_key' => 'YOUR_API_KEY',
-        'api_secret' => 'YOUR_API_SECRET',
-    ]
-],
+return [
+    // ...
+    'Cloudinary' => [
+        'default' => [
+            'cloud_name' => 'your_cloud_name',
+            'api_key' => 'your_api_key',
+            'api_secret' => 'your_api_secret',
+            'secure' => true // use HTTPS
+        ],
+    ],
+    // ...
+];
 ```
 
 ## Usage
 
-### Instantiating Cloudinary
-
-To start using Cloudinary, you need to first instantiate the Cloudinary PHP SDK in your controller using the `startUpCloudinary()` method:
+To use the Cloudinary component in your controller, you need to load it in your `initialize` method:
 
 ```php
-public function startUpCloudinary()
-{
-    $cloudinaryConfig = Configure::read('Cloudinary.default');
+// src/Controller/YourController.php
 
-    $this->cloudinary = new Cloudinary($cloudinaryConfig);
+namespace App\Controller;
+
+use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
+
+class YourController extends Controller
+{
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->loadComponent('CakeCloudinary.Cloudinary');
+    }
+
+    // ...
 }
 ```
 
-### Uploading assets
+### Uploading an image
 
-To upload an asset to your Cloudinary account, you can use the `upload()` method. The first parameter can be a file path, a `FormData` object or a `data URI`. The second parameter is an array of upload options, and the third parameter is an array of Cloudinary URL options.
+To upload an image to your Cloudinary account, you can call the `upload` method of the Cloudinary component. The method takes the file to be uploaded as the first argument and an array of options as the second argument:
+// Upload the file to cloudinary and get a secure url in one liner
+```php
+$this->Cloudinary->upload($file, ['getUrl' => 'true']);
+```
+The `$file` parameter can be a file path, a `File` object or a `UploadedFile` object. The options array can include any of the options supported by the Cloudinary API. See the [Cloudinary PHP Image Upload API documentation](https://cloudinary.com/documentation/php_image_and_video_upload#server_side_upload) for a list of available options.
+Example: 
+```php
+$this->Cloudinary->upload($file,[
+    'folder' => 'my_cloudinary_folder',
+      'public_id' => 'my_video_name',
+], ['getUrl' => 'true']);
+```
+The `upload` method also returns a response object that contains the uploaded image's metadata, including its URL and public ID. You can retrieve the URL of the uploaded image using the `getUrl` or `getSecureUrl` methods of the Cloudinary component:
 
 ```php
-public function upload(string|object $file, array $options = [], array $url = [])
-{
-    $this->response = $this->uploadApi()->upload($file, $options);
-
-    $this->Helper->getSecureUrlFromArgsArr(func_get_args(), $this->response);
-
-    return $this->response;
-}
+$url = $this->Cloudinary->getUrl();
+$secureUrl = $this->Cloudinary->getSecureUrl();
 ```
 
-For example:
+### Uploading a video
 
+To upload a video to your Cloudinary account, you can call the `uploadVideo` method of the Cloudinary component. The method takes the video file to be uploaded as the first argument and an array of getUrl as part of the functions argument where you can specify if you want to quickly get secure url once an upload is successful. 
+
+//  Quickly upload a video to Cloudinary and get a secure URL in one line of code
 ```php
-$this->startUpCloudinary();
-
-$this->upload('path/to/your/file.jpg', ['folder' => 'my_folder']);
+$this->Cloudinary->uploadVideo($file, ['getUrl' => true]);
 ```
+You can add `options` array as part of the parameter. The options array can include any of the options supported by the Cloudinary API. See the [Cloudinary PHP Image Upload API documentation](https://cloudinary.com/documentation/php_image_and_video_upload#server_side_upload) for a list of available options.
 
-### Uploading videos
-
-To upload a video asset to your Cloudinary account, you can use the `uploadVideo()` method. The first parameter can be a file path, a `FormData` object or a `data URI`. The second parameter is an array of upload options, and the third parameter is an array of Cloudinary URL options.
-
-```php
-public function uploadVideo(string|object $file, array $options = [], array $url = [])
-{
-    $this->response = $this->uploadApi()->upload($file, $options);
-
-    $this->Helper->getSecureUrlFromArgsArr(func_get_args(), $this->response);
-
-    return $this->response;
-}
-```
-
-For example:
+The `uploadVideo` method returns a response object that contains the uploaded video's metadata, including its URL and public ID. You can retrieve the URL of the uploaded video using the `getUrl` or `getSecureUrl` methods of the Cloudinary component:
 
 ```php
-$this->startUpCloudinary();
-
-$this->uploadVideo('path/to/your/video.mp4', ['resource_type' => 'video']);
+$url = $this->Cloudinary->getUrl();
+$secureUrl = $this->Cloudinary->getSecureUrl();
 ```
 
 ### Uploading any file
 
-To upload any type of file to your Cloudinary account, you can use the `uploadFile()` method. The first parameter can be a file path, a `FormData` object or a `data URI`. The second parameter is an array of upload options, and the third parameter is an array of Cloudinary URL options.
-
-```php
-public function uploadFile($file, array $options = [], array $url = [])
-{
-    $anyFileParams  = ['resource_type' =>  'auto'];
-
-    $options = array_merge($options, $anyFileParams);
-    $this->response = $this->uploadApi()->upload($file, $options);
-
-    $this->Helper->getSecureUrlFromArgsArr(func_get_args(), $this->response);
-
-    return $this->response;
-}
+To upload any type

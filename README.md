@@ -55,7 +55,7 @@ class YourController extends Controller
 
 ### Uploading an asset
 
-The `$file` parameter can be a file path, a `File` object or a `UploadedFile` object.
+The `$file` parameter can be a file path, a `File` object or a `$this->request->getUploadedFile();` | `$this->request->getUploadedFiles()` object
 
 Quickily upload an asset and return a secure url 
 ```php

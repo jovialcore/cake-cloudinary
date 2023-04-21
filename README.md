@@ -14,8 +14,8 @@ You will also need to configure the Cloudinary credentials in the `app.php` file
 
 ```php
 // config/app_local.php
+// In the return block, add: 
 
-return [
     // ...
     'Cloudinary' => [
         'default' => [

@@ -61,6 +61,16 @@ Quickily upload an asset and return a secure url
 ```php
 $this->Cloudinary->upload($file, ['getUrl' => 'true']);
 ```
+
+Quickily upload a video asset and return a secure url 
+```php
+$this->Cloudinary->uploadVideo($file, ['getUrl' => 'true']);
+```
+
+Quickily upload any file (e.g, pdf, csv, etc) asset and return a secure url 
+```php
+$this->Cloudinary->uploadFile($file, ['getUrl' => 'true']);
+```
 The assets method can also take an array of options as second argument. The options array can include any of the options supported by the Cloudinary API. See the [Cloudinary PHP Image Upload API documentation](https://cloudinary.com/documentation/php_image_and_video_upload#server_side_upload) for a list of available options.
 Example: 
 ```php
